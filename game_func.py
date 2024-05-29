@@ -5,6 +5,7 @@ import pygame
 from bullet import Bullet
 from alien import Alien
 from menu import Menu
+from menu_settings import MenuSettings
 
 def check_keydown_events(event, ship, aw_settings, screen, bullets, stats):
     if event.key == pygame.K_ESCAPE:
@@ -35,7 +36,7 @@ def check_keyup_events(event, ship):
         ship.moving_down = False
 
 
-def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu):
+def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings):
     for point in menu:
         mouse_x, mouse_y = pygame.mouse.get_pos()
         if point.rect.collidepoint(mouse_x, mouse_y) and not stats.game_active:
@@ -69,7 +70,8 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu):
                         ship.center_ship()
                         battle_sound()
                     elif point.text == "Настройки":
-                        show_settings()
+                        stats.settings_active = True
+                        show_settings(aw_settings, screen, menu_settings)
                     elif point.text == "Выход":
                         sleep(0.3)
                         sys.exit()
@@ -79,11 +81,15 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu):
             check_keyup_events(event, ship)
 
 
-def update_screen(bground, stats, screen, ship, bullets, aliens, sb, strings, menu):
+def update_screen(aw_settings, bground, stats, screen, ship, bullets, aliens, sb, strings, menu, menu_settings):
     bground.blitme()
     if not stats.game_active:
         show_menu(menu)
         strings.show_strings()
+    elif not stats.game_active and not stats.settings_active:
+        ms = MenuSettings(aw_settings, screen, "", (0, 0))
+        ms.blitme()
+        show_settings(aw_settings, screen, menu_settings)
     else:
         for bullet in bullets.sprites():
             bullet.draw_bullet()
@@ -217,9 +223,16 @@ def show_menu(menu):
     for point in menu:
         point.draw()
 
+def create_settings(aw_settings, screen):
+    ms = MenuSettings(aw_settings, screen, "", (0, 0))
+    menu_points = [MenuSettings(aw_settings, screen, "Звук ВКЛ", ms.volume_button_pos),
+                   MenuSettings(aw_settings, screen, "Назад", ms.back_button_pos)]
+    del ms
+    return menu_points
 
-def show_settings():
-    pass
+def show_settings(aw_settings, screen, menu_settings):
+    for point in menu_settings:
+        point.draw()
 
 def shot_sound():
     shot = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "sounds") + os.sep + "shot.mp3")

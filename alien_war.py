@@ -24,14 +24,15 @@ def run_game():
     gf.create_fleet(aw_settings, screen, aliens, ship)
     menu = gf.create_menu(aw_settings, screen)
     gf.menu_sound()
+    menu_settings = gf.create_settings(aw_settings, screen)
     clock = pygame.time.Clock()
     while True:
-        gf.check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu)
+        gf.check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings)
         if stats.game_active:
             ship.update()
             gf.update_bullets(bullets, aliens, aw_settings, screen, ship, stats, sb)
             gf.update_aliens(aw_settings, aliens, ship, stats, screen, bullets, sb)
-        gf.update_screen(bground, stats, screen, ship, bullets, aliens, sb, strings, menu)
+        gf.update_screen(aw_settings, bground, stats, screen, ship, bullets, aliens, sb, strings, menu, menu_settings)
         clock.tick(60)
 
 

@@ -10,7 +10,7 @@ class Strings():
     def prep_footer(self):
         footer_str = "Made by DaVinci @ 2022"
         text_color = (255, 255, 228)
-        self.font = pygame.font.SysFont(None, 25)
+        self.font = pygame.font.SysFont("Verdana", 25)
         self.footer_image = self.font.render(footer_str, True, text_color)
         self.footer_rect = self.footer_image.get_rect()
         self.footer_rect.centerx = self.screen_rect.centerx
@@ -19,7 +19,7 @@ class Strings():
     def prep_name(self):
         name_str = "ALIEN WAR"
         text_color = (252, 1, 10)
-        self.font = pygame.font.SysFont(None, 100)
+        self.font = pygame.font.SysFont("Verdana", 100)
         self.name_image = self.font.render(name_str, True, text_color)
         self.name_rect = self.name_image.get_rect()
         self.name_rect.left = self.screen_rect.left + 40
