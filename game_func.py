@@ -9,9 +9,16 @@ from menu_settings import MenuSettings
 
 def check_keydown_events(event, ship, aw_settings, screen, bullets, stats):
     if event.key == pygame.K_ESCAPE:
-        with open("config.cfg", "w") as conf:
-            conf.write(str(stats.high_score))
-        sys.exit()
+        if not stats.game_active:
+            if stats.settings_active:
+                stats.settings_active = False
+            else:
+                with open("config.cfg", "w") as conf:
+                    conf.write(str(stats.high_score))
+                sys.exit()
+        else:
+            stats.game_active = False
+            pygame.mouse.set_visible(True)
     elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
         ship.moving_right = True
     elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
@@ -22,7 +29,7 @@ def check_keydown_events(event, ship, aw_settings, screen, bullets, stats):
         ship.moving_down = True
     elif event.key == pygame.K_SPACE:
         fire_bullet(aw_settings, screen, ship, bullets)
-        if stats.sound_active:
+        if stats.game_active and stats.sound_active:
             shot_sound()
 
 
@@ -102,6 +109,7 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, me
                         elif point.text == "Звук ВЫКЛ":
                             stats.sound_active = True
                             point.text = "Звук ВКЛ"
+                            menu_sound(stats)
                         elif point.text == "Назад":
                             stats.settings_active = False
                         elif point.text == "Выход":

@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f2183f0-8f88-4c98-91b2-d65515920531" name="Changes" comment="Added Settings screen with working buttons.">
+    <list default="true" id="5f2183f0-8f88-4c98-91b2-d65515920531" name="Changes" comment="Added Settings Sound button handler. Fixed bugs.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alien_war.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien_war.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_stats.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717758250913</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Settings Sound button handler. Fixed bugs.">
+      <option name="closed" value="true" />
+      <created>1717760119353</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717760119353</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +200,7 @@
     <MESSAGE value="Should add new class BgSettings with bg_image" />
     <MESSAGE value="Added new Class bg_settings. Little fixes in game_func and menu_settings." />
     <MESSAGE value="Added Settings screen with working buttons." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Settings screen with working buttons." />
+    <MESSAGE value="Added Settings Sound button handler. Fixed bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Settings Sound button handler. Fixed bugs." />
   </component>
 </project>
