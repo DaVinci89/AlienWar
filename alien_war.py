@@ -26,7 +26,7 @@ def run_game():
     gf.create_fleet(aw_settings, screen, aliens, ship)
     menu = gf.create_menu(aw_settings, screen)
     gf.menu_sound()
-    menu_settings = gf.create_settings(aw_settings, screen)
+    menu_settings = gf.create_settings(aw_settings, screen, bground_settings)
     clock = pygame.time.Clock()
     while True:
         gf.check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings, bground_settings)

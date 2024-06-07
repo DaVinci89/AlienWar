@@ -37,44 +37,67 @@ def check_keyup_events(event, ship):
 
 
 def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings, bground_settings):
-    for point in menu:
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        if point.rect.collidepoint(mouse_x, mouse_y) and not stats.game_active:
-            if not point.sound_lim:
-                hover_sound()
-                point.sound_lim += 1
-            point.hovered = True
-        else:
-            point.hovered = False
-            point.sound_lim = 0
+    if not stats.game_active and not stats.settings_active:
+        for point in menu:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            if point.rect.collidepoint(mouse_x, mouse_y):
+                if not point.sound_lim:
+                    hover_sound()
+                    point.sound_lim += 1
+                point.hovered = True
+            else:
+                point.hovered = False
+                point.sound_lim = 0
+    elif not stats.game_active and stats.settings_active:
+        for point in menu_settings:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            if point.rect.collidepoint(mouse_x, mouse_y):
+                if not point.sound_lim:
+                    hover_sound()
+                    point.sound_lim += 1
+                point.hovered = True
+            else:
+                point.hovered = False
+                point.sound_lim = 0
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            for point in menu:
-                if not stats.game_active and point.hovered:
-                    choose_sound()
-                    if point.text == "Новая игра":
-                        pygame.mixer.music.stop()
-                        aw_settings.initialize_dynamic_settings()
-                        pygame.mouse.set_visible(False)
-                        stats.reset_stats()
-                        stats.game_active = True
-                        sb.prep_score()
-                        sb.prep_high_score()
-                        sb.prep_level()
-                        sb.prep_ships()
-                        aliens.empty()
-                        bullets.empty()
-                        create_fleet(aw_settings, screen, aliens, ship)
-                        ship.center_ship()
-                        battle_sound()
-                    elif point.text == "Настройки":
-                        stats.settings_active = True
-                        show_settings(menu_settings)
-                    elif point.text == "Выход":
-                        sleep(0.3)
-                        sys.exit()
+            if not stats.game_active and not stats.settings_active:
+                for point in menu:
+                    if not stats.game_active and point.hovered:
+                        choose_sound()
+                        if point.text == "Новая игра":
+                            pygame.mixer.music.stop()
+                            aw_settings.initialize_dynamic_settings()
+                            pygame.mouse.set_visible(False)
+                            stats.reset_stats()
+                            stats.game_active = True
+                            sb.prep_score()
+                            sb.prep_high_score()
+                            sb.prep_level()
+                            sb.prep_ships()
+                            aliens.empty()
+                            bullets.empty()
+                            create_fleet(aw_settings, screen, aliens, ship)
+                            ship.center_ship()
+                            battle_sound()
+                        elif point.text == "Настройки":
+                            stats.settings_active = True
+                        elif point.text == "Выход":
+                            sleep(0.3)
+                            sys.exit()
+            elif not stats.game_active and stats.settings_active:
+                for point in menu_settings:
+                    if point.hovered:
+                        choose_sound()
+                        if point.text == "Звук ВКЛ":
+                            pygame.mixer.music.stop()
+                        elif point.text == "Назад":
+                            stats.settings_active = False
+                        elif point.text == "Выход":
+                            sleep(0.3)
+                            sys.exit()
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event, ship, aw_settings, screen, bullets, stats)
         elif event.type == pygame.KEYUP:
@@ -83,7 +106,7 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, me
 
 def update_screen(aw_settings, bground, bground_settings, stats, screen, ship, bullets, aliens, sb, strings, menu, menu_settings):
     bground.blitme()
-    if not stats.game_active:
+    if not stats.game_active and not stats.settings_active:
         show_menu(menu)
         strings.show_strings()
     elif not stats.game_active and stats.settings_active:
@@ -222,10 +245,10 @@ def show_menu(menu):
     for point in menu:
         point.draw()
 
-def create_settings(aw_settings, screen):
-    ms = MenuSettings(aw_settings, screen, "", (0, 0))
-    menu_points = [MenuSettings(aw_settings, screen, "Звук ВКЛ", ms.volume_button_pos),
-                   MenuSettings(aw_settings, screen, "Назад", ms.back_button_pos)]
+def create_settings(aw_settings, screen, bground_settings):
+    ms = MenuSettings(aw_settings, screen, "", (0, 0), bground_settings)
+    menu_points = [MenuSettings(aw_settings, screen, "Звук ВКЛ", ms.volume_button_pos, bground_settings),
+                   MenuSettings(aw_settings, screen, "Назад", ms.back_button_pos, bground_settings)]
     del ms
     return menu_points
 

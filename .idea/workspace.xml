@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f2183f0-8f88-4c98-91b2-d65515920531" name="Changes" comment="Should add new class BgSettings with bg_image">
-      <change afterPath="$PROJECT_DIR$/bg_settings.py" afterDir="false" />
+    <list default="true" id="5f2183f0-8f88-4c98-91b2-d65515920531" name="Changes" comment="Added new Class bg_settings. Little fixes in game_func and menu_settings.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alien_war.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien_war.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_func.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/menu_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Projects/PycharmProjects/PythonDeveloper+&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Projects/PycharmProjects/FRIDAY&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
 }</component>
@@ -164,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717005687177</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added new Class bg_settings. Little fixes in game_func and menu_settings.">
+      <option name="closed" value="true" />
+      <created>1717752876551</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717752876551</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +185,7 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="New version" />
     <MESSAGE value="Should add new class BgSettings with bg_image" />
-    <option name="LAST_COMMIT_MESSAGE" value="Should add new class BgSettings with bg_image" />
+    <MESSAGE value="Added new Class bg_settings. Little fixes in game_func and menu_settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new Class bg_settings. Little fixes in game_func and menu_settings." />
   </component>
 </project>

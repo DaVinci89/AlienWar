@@ -21,7 +21,7 @@ class Settings():
         self.menu_button_width = int(self.screen_width / 6.83)
         self.menu_button_height = int(self.screen_height / 15.36)
         self.menu_settings_width = self.screen_width / 2
-        self.menu_settings_height = self.screen_width / 2
+        self.menu_settings_height = self.screen_height / 2
 
     def initialize_dynamic_settings(self):
         self.ship_speed_factor = 4
