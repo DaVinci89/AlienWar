@@ -22,7 +22,8 @@ def check_keydown_events(event, ship, aw_settings, screen, bullets, stats):
         ship.moving_down = True
     elif event.key == pygame.K_SPACE:
         fire_bullet(aw_settings, screen, ship, bullets)
-        shot_sound()
+        if stats.sound_active:
+            shot_sound()
 
 
 def check_keyup_events(event, ship):
@@ -36,12 +37,12 @@ def check_keyup_events(event, ship):
         ship.moving_down = False
 
 
-def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings, bground_settings):
+def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings):
     if not stats.game_active and not stats.settings_active:
         for point in menu:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if point.rect.collidepoint(mouse_x, mouse_y):
-                if not point.sound_lim:
+                if not point.sound_lim and stats.sound_active:
                     hover_sound()
                     point.sound_lim += 1
                 point.hovered = True
@@ -52,7 +53,7 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, me
         for point in menu_settings:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if point.rect.collidepoint(mouse_x, mouse_y):
-                if not point.sound_lim:
+                if not point.sound_lim and stats.sound_active:
                     hover_sound()
                     point.sound_lim += 1
                 point.hovered = True
@@ -66,7 +67,8 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, me
             if not stats.game_active and not stats.settings_active:
                 for point in menu:
                     if not stats.game_active and point.hovered:
-                        choose_sound()
+                        if stats.sound_active:
+                            choose_sound()
                         if point.text == "Новая игра":
                             pygame.mixer.music.stop()
                             aw_settings.initialize_dynamic_settings()
@@ -81,7 +83,8 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, me
                             bullets.empty()
                             create_fleet(aw_settings, screen, aliens, ship)
                             ship.center_ship()
-                            battle_sound()
+                            if stats.sound_active:
+                                battle_sound()
                         elif point.text == "Настройки":
                             stats.settings_active = True
                         elif point.text == "Выход":
@@ -90,9 +93,15 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, me
             elif not stats.game_active and stats.settings_active:
                 for point in menu_settings:
                     if point.hovered:
-                        choose_sound()
+                        if stats.sound_active:
+                            choose_sound()
                         if point.text == "Звук ВКЛ":
+                            stats.sound_active = False
                             pygame.mixer.music.stop()
+                            point.text = "Звук ВЫКЛ"
+                        elif point.text == "Звук ВЫКЛ":
+                            stats.sound_active = True
+                            point.text = "Звук ВКЛ"
                         elif point.text == "Назад":
                             stats.settings_active = False
                         elif point.text == "Выход":
@@ -260,9 +269,10 @@ def shot_sound():
     shot = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "sounds") + os.sep + "shot.mp3")
     shot.play()
 
-def menu_sound():
-    pygame.mixer.music.load(os.path.join(os.path.dirname(__file__), "sounds") + os.sep + "menu.mp3")
-    pygame.mixer.music.play(-1, 0.0)
+def menu_sound(stats):
+    if stats.sound_active:
+        pygame.mixer.music.load(os.path.join(os.path.dirname(__file__), "sounds") + os.sep + "menu.mp3")
+        pygame.mixer.music.play(-1, 0.0)
 
 def battle_sound():
     pygame.mixer.music.load(os.path.join(os.path.dirname(__file__), "sounds") + os.sep + "battle.mp3")

@@ -6,6 +6,7 @@ class GameStats():
         self.reset_stats()
         self.game_active = False
         self.settings_active = False
+        self.sound_active = True
         if os.path.exists(os.path.join(os.path.dirname(__file__), 'config.cfg')):
             with open("config.cfg", "r") as conf:
                 self.high_score = int(conf.read())
