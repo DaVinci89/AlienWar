@@ -1,6 +1,7 @@
 import pygame
 from settings import Settings
 from bg import Background
+from bg_settings import Background_Settings
 from ship import Ship
 import game_func as gf
 from pygame.sprite import Group
@@ -18,6 +19,7 @@ def run_game():
     sb = ScoreBoard(aw_settings, screen, stats)
     pygame.display.set_caption("Alien War")
     bground = Background(aw_settings, screen)
+    bground_settings = Background_Settings(aw_settings, screen)
     ship = Ship(aw_settings, screen)
     bullets = Group()
     aliens = Group()
@@ -27,12 +29,12 @@ def run_game():
     menu_settings = gf.create_settings(aw_settings, screen)
     clock = pygame.time.Clock()
     while True:
-        gf.check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings)
+        gf.check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings, bground_settings)
         if stats.game_active:
             ship.update()
             gf.update_bullets(bullets, aliens, aw_settings, screen, ship, stats, sb)
             gf.update_aliens(aw_settings, aliens, ship, stats, screen, bullets, sb)
-        gf.update_screen(aw_settings, bground, stats, screen, ship, bullets, aliens, sb, strings, menu, menu_settings)
+        gf.update_screen(aw_settings, bground, bground_settings, stats, screen, ship, bullets, aliens, sb, strings, menu, menu_settings)
         clock.tick(60)
 
 

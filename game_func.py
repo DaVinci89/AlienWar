@@ -36,7 +36,7 @@ def check_keyup_events(event, ship):
         ship.moving_down = False
 
 
-def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings):
+def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, menu_settings, bground_settings):
     for point in menu:
         mouse_x, mouse_y = pygame.mouse.get_pos()
         if point.rect.collidepoint(mouse_x, mouse_y) and not stats.game_active:
@@ -71,7 +71,7 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, me
                         battle_sound()
                     elif point.text == "Настройки":
                         stats.settings_active = True
-                        show_settings(aw_settings, screen, menu_settings)
+                        show_settings(menu_settings)
                     elif point.text == "Выход":
                         sleep(0.3)
                         sys.exit()
@@ -81,15 +81,14 @@ def check_events(ship, aw_settings, screen, bullets, stats, aliens, sb, menu, me
             check_keyup_events(event, ship)
 
 
-def update_screen(aw_settings, bground, stats, screen, ship, bullets, aliens, sb, strings, menu, menu_settings):
+def update_screen(aw_settings, bground, bground_settings, stats, screen, ship, bullets, aliens, sb, strings, menu, menu_settings):
     bground.blitme()
     if not stats.game_active:
         show_menu(menu)
         strings.show_strings()
-    elif not stats.game_active and not stats.settings_active:
-        ms = MenuSettings(aw_settings, screen, "", (0, 0))
-        ms.blitme()
-        show_settings(aw_settings, screen, menu_settings)
+    elif not stats.game_active and stats.settings_active:
+        bground_settings.blitme()
+        show_settings(menu_settings)
     else:
         for bullet in bullets.sprites():
             bullet.draw_bullet()
@@ -230,7 +229,7 @@ def create_settings(aw_settings, screen):
     del ms
     return menu_points
 
-def show_settings(aw_settings, screen, menu_settings):
+def show_settings(menu_settings):
     for point in menu_settings:
         point.draw()
 
