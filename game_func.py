@@ -1,5 +1,6 @@
 import sys
 import os
+import sqlite3
 from time import sleep
 import pygame
 from bullet import Bullet
@@ -293,3 +294,25 @@ def choose_sound():
 def hover_sound():
     hover = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "sounds") + os.sep + "hover.mp3")
     hover.play()
+
+def add_user(username):
+    conn = sqlite3.connect("game_users.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO users (username) VALUES (?)", (username,))
+    conn.commit()
+    conn.close()
+
+def get_user(username):
+    conn = sqlite3.connect("game_users.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
+    user = cursor.fetchone()
+    conn.close()
+    return user
+
+def update_score(username, score):
+    conn = sqlite3.connect("game_users.db")
+    cursor = conn.cursor()
+    cursor.execute("UPDATE users SET score = ? WHERE username = ?", (score, username))
+    conn.commit()
+    conn.close()

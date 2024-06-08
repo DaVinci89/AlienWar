@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f2183f0-8f88-4c98-91b2-d65515920531" name="Changes" comment="Added Settings Sound button handler. Fixed bugs.">
+    <list default="true" id="5f2183f0-8f88-4c98-91b2-d65515920531" name="Changes" comment="Fixed bugs. Added ESCAPE key handler.">
+      <change afterPath="$PROJECT_DIR$/game_users.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/profile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_func.py" afterDir="false" />
     </list>
@@ -185,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717760119353</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed bugs. Added ESCAPE key handler.">
+      <option name="closed" value="true" />
+      <created>1717760776591</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717760776591</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +211,7 @@
     <MESSAGE value="Added new Class bg_settings. Little fixes in game_func and menu_settings." />
     <MESSAGE value="Added Settings screen with working buttons." />
     <MESSAGE value="Added Settings Sound button handler. Fixed bugs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Settings Sound button handler. Fixed bugs." />
+    <MESSAGE value="Fixed bugs. Added ESCAPE key handler." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs. Added ESCAPE key handler." />
   </component>
 </project>
